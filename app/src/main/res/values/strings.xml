@@ -4,4 +4,6 @@
     <string name="content_description_menu_list">icone de menu</string>
     <string name="content_description_menu_busca">icone de busca</string>
     <string name="content_description_menu_favorites">icone de favoritos</string>
+    <string name="home_shortcut_books">Livros</string>
+    <string name="home_shortcuts_favorites">Favoritos</string>
 </resources>
