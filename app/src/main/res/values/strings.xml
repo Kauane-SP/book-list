@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Book List</string>
+    <string name="title_top_bar">Minha lista de livros</string>
+    <string name="content_description_menu_list">icone de menu</string>
+    <string name="content_description_menu_busca">icone de busca</string>
+    <string name="content_description_menu_favorites">icone de favoritos</string>
 </resources>
