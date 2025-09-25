@@ -1,8 +1,8 @@
-package com.example.booklist.ui.theme.model
+package com.example.booklist.model
 
 import com.example.booklist.R
 
-enum class HomeShortcuts(val route: String, val nameRoute: String, val description: String) {
+enum class HomeShortcuts(val route: String, val label: String, val description: String) {
     LIST_BOOKS(
         R.string.home_shortcut_books.toString(),
         R.string.home_shortcut_books.toString(),
