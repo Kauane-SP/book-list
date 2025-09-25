@@ -21,7 +21,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.booklist.R
-import com.example.booklist.ui.theme.model.HomeShortcuts
+import com.example.booklist.model.HomeShortcuts
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
