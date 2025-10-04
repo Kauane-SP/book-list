@@ -37,7 +37,7 @@ fun HomeTabRow(paddingValues: PaddingValues) {
     Column(
         modifier = Modifier
             .padding(paddingValues)
-            .verticalScroll(scrollState)
+//            .verticalScroll(scrollState)
     ) {
         PrimaryTabRow(
             selectedTabIndex = selectedDestination,

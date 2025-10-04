@@ -6,4 +6,5 @@
     <string name="content_description_menu_favorites">icone de favoritos</string>
     <string name="home_shortcut_books">Livros</string>
     <string name="home_shortcuts_favorites">Favoritos</string>
+    <string name="item_list_icon_start_description">estrela</string>
 </resources>
