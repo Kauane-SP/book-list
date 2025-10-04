@@ -1,4 +1,4 @@
-package com.example.booklist.ui.theme
+package com.example.booklist.ui.theme.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

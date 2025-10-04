@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Tab
@@ -23,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.booklist.R
 import com.example.booklist.model.HomeShortcuts
-import com.example.booklist.ui.theme.NavigationGraph
+import com.example.booklist.ui.theme.navigation.NavigationGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
