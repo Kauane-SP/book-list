@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.booklist.R
 import com.example.booklist.model.BooksModel
+import com.example.booklist.ui.theme.textStyleDefault
 
 @Composable
 fun ListItemDash(booksModel: BooksModel) {
@@ -45,7 +46,7 @@ fun ListItemDash(booksModel: BooksModel) {
             }
         }
         Column(Modifier.padding(start = 16.dp)) {
-            Text(booksModel.name)
+            Text(booksModel.name, style = textStyleDefault, modifier = Modifier.padding(top = 8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = {}) {
                     Box {
@@ -53,21 +54,21 @@ fun ListItemDash(booksModel: BooksModel) {
                             tint = Color.Black,
                             imageVector = Icons.Default.Star,
                             contentDescription = null,
-                            modifier = Modifier.size(28.dp)
+                            modifier = Modifier.size(18.dp)
                         )
                         Icon(
                             tint = Color.Yellow,
                             imageVector = Icons.Default.Star,
                             contentDescription = stringResource(R.string.item_list_icon_start_description),
                             modifier = Modifier
-                                .size(24.dp)
+                                .size(16.dp)
                                 .align(Alignment.Center)
                         )
                     }
                 }
-                Text(booksModel.score)
+                Text(booksModel.score.toString(), style = textStyleDefault)
             }
-            Text(booksModel.author)
+            Text(booksModel.author, style = textStyleDefault)
         }
     }
 }

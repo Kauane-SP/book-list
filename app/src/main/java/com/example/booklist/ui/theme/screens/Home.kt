@@ -3,7 +3,6 @@ package com.example.booklist.ui.theme.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Tab
@@ -29,14 +28,12 @@ import com.example.booklist.ui.theme.navigation.NavigationGraph
 fun HomeTabRow(paddingValues: PaddingValues) {
 
     val navController = rememberNavController()
-    val scrollState = rememberScrollState()
     val startDestination = HomeShortcuts.LIST_BOOKS
     var selectedDestination: Int by rememberSaveable { mutableIntStateOf(startDestination.ordinal) }
 
     Column(
         modifier = Modifier
             .padding(paddingValues)
-//            .verticalScroll(scrollState)
     ) {
         PrimaryTabRow(
             selectedTabIndex = selectedDestination,
