@@ -42,3 +42,39 @@ val titleAppBar = TextStyle (
     letterSpacing = 1.sp,
     color = Color.DarkGray
 )
+
+val textStyleDefault = TextStyle (
+    fontSize = 12.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Medium,
+    color = Color.Black
+)
+
+val textStyleTitleAlert = TextStyle (
+    fontSize = 16.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Normal,
+    color = Color.Black
+)
+
+val textStyleTextAlert = TextStyle (
+    fontSize = 12.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Normal,
+    color = Color.DarkGray
+)
+
+val textStyleButton = TextStyle (
+    fontSize = 12.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Medium,
+)
+
+val textStyleSinopse = TextStyle (
+    fontSize = 12.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Medium,
+    color = Color.Black,
+    letterSpacing = 0.5.sp,
+    lineHeight = 20.sp
+)
