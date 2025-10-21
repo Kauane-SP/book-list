@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Parcelize
 data class BooksModel(
     @SerialName("name")
-    val name: String = "",
+    var name: String = "",
     @SerialName("image")
     val image: String = "",
     @SerialName("description")
@@ -19,5 +19,7 @@ data class BooksModel(
     @SerialName("author")
     val author: String = "",
     @SerialName("index")
-    val index: String = ""
+    val index: String = "",
+    @SerialName("launch")
+    val launch: String = ""
 ): Parcelable
