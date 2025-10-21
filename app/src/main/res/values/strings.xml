@@ -11,6 +11,7 @@
     <string name="book_note_title">Nota:</string>
     <string name="button_edit">Editar</string>
     <string name="button_exclude">Excluir</string>
+    <string name="button_save">Salvar</string>
     <string name="title_synopsis">Sinopse</string>
     <string name="alert_title">Livro Excluido</string>
     <string name="alert_text">Esta obra saiu de sua lista de livros</string>
