@@ -1,6 +1,7 @@
 package com.example.booklist.ui.theme.screens
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,12 +23,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onVisibilityChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -37,7 +41,6 @@ import com.example.booklist.R
 import com.example.booklist.model.BooksModel
 import com.example.booklist.ui.theme.textStyleButton
 import com.example.booklist.ui.theme.textStyleDefault
-import com.example.booklist.ui.theme.textStyleSinopse
 import com.example.booklist.ui.theme.viewModel.BookEvents
 import com.example.booklist.ui.theme.viewModel.BooksViewModel
 import org.koin.compose.viewmodel.koinViewModel
@@ -50,18 +53,37 @@ fun ItemBook(
     viewModel: BooksViewModel = koinViewModel()
 ) {
     var showDialog by remember { mutableStateOf(false) }
+    var showUpdateBook by remember { mutableStateOf(false) }
+
+    var nameBook by remember { mutableStateOf(booksModel.name) }
+    var authorBook by remember { mutableStateOf(booksModel.author) }
+    var descriptionBook by remember { mutableStateOf(booksModel.description) }
+    var indexBook by remember { mutableStateOf(booksModel.index) }
+    var scoreBook by remember { mutableIntStateOf(booksModel.score) }
+    var launch by remember { mutableStateOf(booksModel.launch) }
+
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.initVieModel()
         viewModel.operationDeleteEvent.collect { event ->
             showDialog = when (event) {
                 BookEvents.Success -> {
-                    false
+                    true
                 }
 
                 is BookEvents.Error -> {
-                    true
+                    false
                 }
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.operationEditEvent.collect { update ->
+            showUpdateBook = when (update) {
+                BookEvents.Success -> false
+                is BookEvents.Error -> true
             }
         }
     }
@@ -73,9 +95,9 @@ fun ItemBook(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp, top = 24.dp)
+            .padding(16.dp, top = 24.dp, end = 16.dp)
     ) {
-        Row {
+        Row(Modifier.padding(end = 16.dp)) {
             Card(
                 elevation = CardDefaults.elevatedCardElevation(8.dp),
                 modifier = Modifier.size(height = 160.dp, width = 120.dp)
@@ -90,19 +112,26 @@ fun ItemBook(
                 }
             }
             Column(modifier = Modifier.padding(start = 16.dp)) {
-                Text(
-                    text = booksModel.name,
-                    style = textStyleDefault,
-                    modifier = Modifier.padding(top = 16.dp)
+                InitInlineEditableField(
+                    valueLabel = "nome",
+                    valueText = nameBook,
+                    valueStyle = textStyleDefault,
+                    onValueChange = { nameBook = it },
+                    isEditable = showUpdateBook
                 )
-                Text(
-                    text = booksModel.author,
-                    style = textStyleDefault,
-                    modifier = Modifier.padding(top = 16.dp)
+                InitInlineEditableField(
+                    valueLabel = "author",
+                    valueText = authorBook,
+                    valueStyle = textStyleDefault,
+                    onValueChange = { authorBook = it },
+                    isEditable = showUpdateBook
                 )
-                Text(
-                    text = "${stringResource(R.string.book_send_title)} ${booksModel.name}",
-                    style = textStyleDefault
+                InitInlineEditableField(
+                    valueLabel = "lançamento",
+                    valueText = "${stringResource(R.string.book_send_title)} ${booksModel.launch}",
+                    valueStyle = textStyleDefault,
+                    onValueChange = { launch = it },
+                    isEditable = showUpdateBook
                 )
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -120,22 +149,26 @@ fun ItemBook(
         Text(
             text = stringResource(R.string.title_synopsis),
             style = textStyleDefault,
-            modifier = Modifier.padding(top = 24.dp)
+            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp)
         )
-        Text(
-            text = booksModel.description,
-            style = textStyleSinopse,
-            modifier = Modifier.padding(top = 16.dp, end = 16.dp)
+        InitInlineEditableField(
+            valueText = descriptionBook,
+            valueStyle = textStyleDefault,
+            onValueChange = { descriptionBook = it },
+            isEditable = showUpdateBook,
+            valueLabel = "sinopse",
         )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(top = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End
         ) {
             ElevatedButton(
-                onClick = {},
+                onClick = {
+                    showUpdateBook = true
+                },
                 modifier = Modifier.padding(start = 16.dp),
                 border = BorderStroke(color = colorResource(R.color.purple_200), width = 1.dp)
             ) {
@@ -154,6 +187,42 @@ fun ItemBook(
                         color = colorResource(R.color.purple_200),
                         modifier = Modifier.padding(start = 8.dp)
                     )
+                }
+            }
+
+            if (showUpdateBook) {
+                ElevatedButton(
+                    onClick = {
+                        viewModel.editItemList(
+                            BooksModel(
+                                name = nameBook,
+                                author = authorBook,
+                                description = descriptionBook,
+                                score = scoreBook,
+                                index = indexBook
+                            )
+                        )
+                        Toast.makeText(context, "Item salvo", Toast.LENGTH_SHORT).show()
+                    },
+                    modifier = Modifier.padding(start = 16.dp),
+                    border = BorderStroke(color = colorResource(R.color.purple_200), width = 1.dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Edit,
+                            contentDescription = "",
+                            tint = colorResource(R.color.purple_200),
+                            modifier = Modifier.size(14.dp)
+                        )
+                        Text(
+                            stringResource(R.string.button_save),
+                            style = textStyleButton,
+                            color = colorResource(R.color.purple_200),
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
                 }
             }
 

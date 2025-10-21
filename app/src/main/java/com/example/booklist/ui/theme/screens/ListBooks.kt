@@ -12,11 +12,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.booklist.ui.theme.viewModel.BooksViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun DashListBooks(viewModel: BooksViewModel = koinViewModel()) {
+fun DashListBooks(navHostController: NavHostController, viewModel: BooksViewModel = koinViewModel()) {
     LaunchedEffect(Unit) { viewModel.initVieModel() }
     val listBooks = viewModel.stateValueBook.collectAsState().value
 
@@ -27,7 +28,7 @@ fun DashListBooks(viewModel: BooksViewModel = koinViewModel()) {
     ) {
         LazyColumn(Modifier.weight(1f)) {
             items(listBooks) {
-                ListItemDash(it)
+                ListItemDash(navHostController, it)
             }
         }
     }
