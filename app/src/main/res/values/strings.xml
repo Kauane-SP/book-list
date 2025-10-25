@@ -5,11 +5,12 @@
     <string name="content_description_menu_busca">icone de busca</string>
     <string name="content_description_menu_favorites">icone de favoritos</string>
     <string name="home_shortcut_books">Livros</string>
-    <string name="home_shortcuts_favorites">Favoritos</string>
+    <string name="home_shortcuts_add_books">Adicionar Livro</string>
     <string name="item_list_icon_start_description">estrela</string>
     <string name="book_send_title">Lançamento:</string>
     <string name="book_note_title">Nota:</string>
     <string name="button_edit">Editar</string>
+    <string name="button_update">Cadastrar</string>
     <string name="button_exclude">Excluir</string>
     <string name="button_save">Salvar</string>
     <string name="title_synopsis">Sinopse</string>

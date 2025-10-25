@@ -9,7 +9,7 @@ import androidx.navigation.toRoute
 import com.example.booklist.model.BooksModel
 import com.example.booklist.model.HomeShortcuts
 import com.example.booklist.ui.theme.screens.DashListBooks
-import com.example.booklist.ui.theme.screens.DashListFavorites
+import com.example.booklist.ui.theme.screens.AddBooks
 import com.example.booklist.ui.theme.screens.ItemBook
 
 @SuppressLint("ComposableDestinationInComposeScope")
@@ -22,7 +22,7 @@ fun NavigationGraph(
             composable(destination.route) {
                 when (destination) {
                     HomeShortcuts.LIST_BOOKS -> DashListBooks(navController)
-                    HomeShortcuts.FAVORITES -> DashListFavorites()
+                    HomeShortcuts.FAVORITES -> AddBooks()
                 }
             }
         }

@@ -21,6 +21,9 @@ class BooksViewModel(private val storageServiceProvider: StorageServiceProvider)
     private val _operationEditEvent = MutableSharedFlow<BookEvents>()
     val operationEditEvent: SharedFlow<BookEvents> = _operationEditEvent
 
+    private val _operationAddEvent = MutableSharedFlow<BookEvents>()
+    val operationAddEvent: SharedFlow<BookEvents> = _operationAddEvent
+
     fun initVieModel() {
         getListBooks()
     }
@@ -61,6 +64,18 @@ class BooksViewModel(private val storageServiceProvider: StorageServiceProvider)
                 _operationEditEvent.emit(BookEvents.Success)
             }.onFailure { exception ->
                 _operationEditEvent.emit(BookEvents.Error(exception.message ?: "Erro desconhecido"))
+            }
+        }
+    }
+
+    fun addItemBook(booksModel: BooksModel) {
+        viewModelScope.launch {
+            runCatching {
+                storageServiceProvider.saveBooks(booksModel)
+            }.onSuccess {
+                _operationAddEvent.emit(BookEvents.Success)
+            }.onFailure { exception ->
+                _operationAddEvent.emit(BookEvents.Error(exception.message ?: "Erro desconhecido"))
             }
         }
     }
