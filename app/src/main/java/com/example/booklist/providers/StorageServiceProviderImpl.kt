@@ -19,7 +19,7 @@ class StorageServiceProviderImpl(private val firestore: FirebaseFirestore) :
     }
 
     override suspend fun updateBooks(booksModel: BooksModel) {
-        firestore.collection(COLLECTION_BOOKS).document(booksModel.index).set(booksModel).await()
+        firestore.collection(COLLECTION_BOOKS).document(booksModel.id).set(booksModel).await()
     }
 
     override suspend fun deleteBooks(idBook: String) {

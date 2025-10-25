@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -30,7 +34,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onVisibilityChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -52,6 +55,7 @@ fun ItemBook(
     navHostController: NavHostController,
     viewModel: BooksViewModel = koinViewModel()
 ) {
+    val rememberScroll = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
     var showUpdateBook by remember { mutableStateOf(false) }
 
@@ -61,6 +65,7 @@ fun ItemBook(
     var indexBook by remember { mutableStateOf(booksModel.index) }
     var scoreBook by remember { mutableIntStateOf(booksModel.score) }
     var launch by remember { mutableStateOf(booksModel.launch) }
+    var id by remember { mutableStateOf(booksModel.id) }
 
     val context = LocalContext.current
 
@@ -96,6 +101,7 @@ fun ItemBook(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp, top = 24.dp, end = 16.dp)
+            .verticalScroll(rememberScroll)
     ) {
         Row(Modifier.padding(end = 16.dp)) {
             Card(
@@ -119,6 +125,7 @@ fun ItemBook(
                     onValueChange = { nameBook = it },
                     isEditable = showUpdateBook
                 )
+                Spacer(modifier = Modifier.height(16.dp))
                 InitInlineEditableField(
                     valueLabel = "author",
                     valueText = authorBook,
@@ -126,6 +133,7 @@ fun ItemBook(
                     onValueChange = { authorBook = it },
                     isEditable = showUpdateBook
                 )
+                Spacer(modifier = Modifier.height(16.dp))
                 InitInlineEditableField(
                     valueLabel = "lançamento",
                     valueText = "${stringResource(R.string.book_send_title)} ${booksModel.launch}",
@@ -199,7 +207,8 @@ fun ItemBook(
                                 author = authorBook,
                                 description = descriptionBook,
                                 score = scoreBook,
-                                index = indexBook
+                                index = indexBook,
+                                id = id
                             )
                         )
                         Toast.makeText(context, "Item salvo", Toast.LENGTH_SHORT).show()
@@ -227,7 +236,7 @@ fun ItemBook(
             }
 
             ElevatedButton(
-                onClick = { viewModel.deleteItemList(booksModel.index) },
+                onClick = { viewModel.deleteItemList(booksModel.id) },
                 modifier = Modifier.padding(start = 16.dp),
                 border = BorderStroke(color = colorResource(R.color.purple_200), width = 1.dp)
             ) {
