@@ -56,9 +56,7 @@ Views: Implementadas em Jetpack Compose para um Design System moderno e responsi
 
 ViewModels: Gerenciam a lógica de visualização, formatam os dados e interagem com a Camada de Domínio, seguindo o padrão MVVM.
 
-Data Sources:
-
-Remote: Implementação para a comunicação com Firebase Firestore (resumos) e Google Books API (inspirações).
+Data Sources: Implementação para a comunicação com Firebase Firestore (resumos) e Google Books API (inspirações).
 
 ⚙️ Tecnologias e Ferramentas
 
