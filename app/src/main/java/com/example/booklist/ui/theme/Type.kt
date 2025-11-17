@@ -35,14 +35,49 @@ val Typography = Typography(
     */
 )
 
-val titleAppBar = TextStyle (
-    fontSize = 18.sp,
+val titleRegister = TextStyle (
+    fontSize = 24.sp,
     fontStyle = FontStyle.Normal,
     fontWeight = FontWeight.Bold,
     letterSpacing = 1.sp,
     color = Color.DarkGray
 )
 
+val subTitleRegister = TextStyle (
+    fontSize = 14.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Medium,
+    color = Color.Black
+)
+
+val subTitleBook = TextStyle (
+    fontSize = 14.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Medium,
+    color = Color.Black
+)
+
+val titleAppBar = TextStyle (
+    fontSize = 18.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Bold,
+    letterSpacing = 1.sp,
+    color = Color.White
+)
+
+val titleItemBook = TextStyle (
+    fontSize = 18.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Bold,
+    color = Color.DarkGray
+)
+
+val textStyleBookDefault = TextStyle (
+    fontSize = 12.sp,
+    fontStyle = FontStyle.Normal,
+    fontWeight = FontWeight.Medium,
+    color = Color.LightGray
+)
 val textStyleDefault = TextStyle (
     fontSize = 12.sp,
     fontStyle = FontStyle.Normal,

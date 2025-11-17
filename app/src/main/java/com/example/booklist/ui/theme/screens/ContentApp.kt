@@ -8,12 +8,15 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.navigation.compose.rememberNavController
+import com.example.booklist.ui.theme.navigation.NavigationGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContentApp() {
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val navController = rememberNavController()
 
     Scaffold(
         modifier = Modifier
@@ -21,6 +24,6 @@ fun ContentApp() {
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = { TopBarBookList() }
     ) { paddingValues ->
-        HomeTabRow(paddingValues)
+        NavigationGraph(navController, paddingValues)
     }
 }
