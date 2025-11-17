@@ -1,4 +1,4 @@
-package com.example.booklist.ui.theme.screens
+package com.example.booklist.ui.theme.screens.dialog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
