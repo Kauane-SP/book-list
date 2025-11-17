@@ -1,7 +1,6 @@
 package com.example.booklist.ui.theme.screens
 
 import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.example.booklist.R
 import com.example.booklist.model.BooksModel
 import com.example.booklist.ui.theme.textStyleButton
+import com.example.booklist.ui.theme.textStyleDefault
 import com.example.booklist.ui.theme.viewModel.BookEvents
 import com.example.booklist.ui.theme.viewModel.BooksViewModel
 import org.koin.compose.viewmodel.koinViewModel
@@ -53,7 +54,8 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
                 }
 
                 is BookEvents.Error -> {
-                    Toast.makeText(context, "Ocorreu um erro ao salvar o livro", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Ocorreu um erro ao salvar o livro", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
@@ -65,8 +67,13 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            "Precha os campos para adicionar um novo livro a sua lista: ",
+            style = textStyleDefault
+        )
+
         OutlinedTextField(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(top = 16.dp, end = 16.dp, start = 16.dp),
             value = nameBook,
             onValueChange = { nameBook = it },
             singleLine = true,
@@ -74,7 +81,7 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
         )
 
         OutlinedTextField(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(top = 8.dp, end = 16.dp, start = 16.dp),
             value = authorBook,
             onValueChange = { authorBook = it },
             singleLine = true,
@@ -82,7 +89,7 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
         )
 
         OutlinedTextField(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(top = 8.dp, end = 16.dp, start = 16.dp),
             value = scoreBook,
             onValueChange = { scoreBook = it },
             singleLine = true,
@@ -90,7 +97,7 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
         )
 
         OutlinedTextField(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(top = 8.dp, end = 16.dp, start = 16.dp),
             value = launchBook,
             onValueChange = { launchBook = it },
             singleLine = true,
@@ -99,15 +106,20 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
 
         OutlinedTextField(
             modifier = Modifier
-                .padding(16.dp)
-                .size(width = 280.dp, height = 200.dp),
+                .padding(top = 8.dp, end = 16.dp, start = 16.dp)
+                .size(width = 280.dp, height = 100.dp),
             value = descriptionBook,
             onValueChange = { descriptionBook = it },
             singleLine = false,
             label = { Text("description") },
         )
 
-        Row(Modifier.fillMaxWidth().padding(end = 24.dp), horizontalArrangement = Arrangement.End) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(end = 24.dp, top = 16.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
             ElevatedButton(
                 onClick = {
                     viewModel.addItemBook(
@@ -120,13 +132,15 @@ fun AddBooks(viewModel: BooksViewModel = koinViewModel()) {
                         )
                     )
                 },
-                modifier = Modifier.padding(start = 16.dp),
-                border = BorderStroke(color = colorResource(R.color.purple_200), width = 1.dp)
+                colors = ButtonDefaults.elevatedButtonColors(
+                    containerColor = colorResource(R.color.purple_500)
+                ),
+                modifier = Modifier.padding(start = 16.dp)
             ) {
                 Text(
                     stringResource(R.string.button_update),
                     style = textStyleButton,
-                    color = colorResource(R.color.purple_200),
+                    color = colorResource(R.color.white),
                     modifier = Modifier.padding(start = 8.dp)
                 )
             }
