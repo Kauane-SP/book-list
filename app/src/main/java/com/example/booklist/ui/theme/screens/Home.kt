@@ -1,0 +1,106 @@
+package com.example.booklist.ui.theme.screens
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.PrimaryTabRow
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
+import com.example.booklist.R
+import com.example.booklist.model.HomeShortcuts
+import com.example.booklist.ui.theme.navigation.NavigationGraphTabRow
+import com.example.booklist.ui.theme.titleAppBar
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HomeTabRow(paddingValues: PaddingValues) {
+
+    val scroll = rememberScrollState()
+    val navController = rememberNavController()
+    val startDestination = HomeShortcuts.LIST_BOOKS
+    var selectedDestination: Int by rememberSaveable { mutableIntStateOf(startDestination.ordinal) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .verticalScroll(scroll)
+    ) {
+        Box {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.2f),
+                shape = RoundedCornerShape(
+                    topStart = 0.dp,
+                    topEnd = 0.dp,
+                    bottomStart = 60.dp,
+                    bottomEnd = 60.dp
+                ),
+                colors = CardDefaults.cardColors(
+                    containerColor = colorResource(R.color.purple_200)
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+            ) {
+                Column(modifier = Modifier.fillMaxSize()) {
+
+                    Text(
+                        stringResource(R.string.title_top_bar),
+                        style = titleAppBar,
+                        modifier = Modifier.padding(16.dp)
+                    )
+
+                    PrimaryTabRow(
+                        selectedTabIndex = selectedDestination,
+                        modifier = Modifier.padding(),
+                        indicator = {
+                            TabRowDefaults.PrimaryIndicator(
+                                Modifier.tabIndicatorOffset(selectedDestination),
+                                color = colorResource(R.color.white),
+                                height = 2.dp,
+                                width = 100.dp
+                            )
+                        },
+                        containerColor = colorResource(R.color.purple_200)
+                    ) {
+                        HomeShortcuts.entries.forEachIndexed { index, homeShortcuts ->
+                            Tab(
+                                selectedDestination == index,
+                                onClick = {
+                                    navController.navigate(homeShortcuts.route)
+                                    selectedDestination = index
+                                },
+                                selectedContentColor = Color.White,
+                                unselectedContentColor = Color.LightGray,
+                                text = { Text(stringResource(homeShortcuts.label.toInt())) })
+                        }
+                    }
+                }
+
+            }
+        }
+        NavigationGraphTabRow(navController, startDestination)
+    }
+}

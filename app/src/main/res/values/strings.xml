@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">Book List</string>
+    <string name="title_top_bar">Minha lista de livros</string>
+    <string name="content_description_menu_list">icone de menu</string>
+    <string name="content_description_menu_busca">icone de busca</string>
+    <string name="content_description_menu_favorites">icone de favoritos</string>
+    <string name="home_shortcut_books">Livros</string>
+    <string name="home_shortcuts_add_books">Adicionar Livro</string>
+    <string name="item_list_icon_start_description">estrela</string>
+    <string name="book_send_title">Lançamento:</string>
+    <string name="book_note_title">Nota:</string>
+    <string name="button_edit">Editar</string>
+    <string name="button_update">Cadastrar</string>
+    <string name="button_login">Login</string>
+    <string name="button_exclude">Excluir</string>
+    <string name="button_save">Salvar</string>
+    <string name="button_go_to_register">Criar</string>
+    <string name="title_synopsis">Sinopse</string>
+    <string name="alert_title">Livro Excluido</string>
+    <string name="alert_text">Esta obra saiu de sua lista de livros</string>
+    <string name="alert_button">voltar para home</string>
+    <string name="alert_button_register">voltar para o login</string>
+    <string name="title_user_register">"Bem vindo ao Book List"</string>
+    <string name="sub_title_user_register">"Crie seu cadastro para entrar no aplicativo:"</string>
+    <string name="sub_title_user_login">"Digite seu email e senha para entrar:"</string>
+    <string name="message_success_register">"Cadastro concluido com sucesso !"</string>
+    <string name="message_error_register">"Ocorreu algum erro no processo de cadastro"</string>
+    <string name="message_success_login">"Login realizado com sucesso !"</string>
+    <string name="message_error_login">"Ocorreu um erro, tente novamente"</string>
+    <string name="route_home">"Home"</string>
+    <string name="route_register">"Register"</string>
+    <string name="route_login">"Login"</string>
+    <string name="sub_title_google_books">"Recomendados para você:"</string>
+    <string name="sub_title_resume_books">"Suas anotações:"</string>
 </resources>
