@@ -43,6 +43,10 @@ android {
 }
 
 dependencies {
+    // RETROFIT
+    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit)
+
     // KOIN
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -52,9 +56,12 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.messaging)
 
     //COIL
     implementation(libs.coil)
+    implementation(libs.coil.http)
 
     //NAVIGATION
     implementation(libs.navigation)
